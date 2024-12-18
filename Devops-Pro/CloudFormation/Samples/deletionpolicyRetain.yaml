@@ -1,0 +1,6 @@
+Resources:
+  RetainBucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: 'Retain'
+  NoRetainBucket:
+    Type: 'AWS::S3::Bucket'
