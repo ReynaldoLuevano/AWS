@@ -1,0 +1,5 @@
+Description: 'CloudFormation Demo with a Custom Resource'
+Resources:
+  Bucket:
+    Type: 'AWS::S3::Bucket'
+  

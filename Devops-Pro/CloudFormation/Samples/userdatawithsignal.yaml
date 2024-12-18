@@ -1,0 +1,53 @@
+Parameters:
+  Message:
+    Type: 'String'
+    Description: 'Message for the HTML page'
+    Default: 'Hola Mundo'
+  LatestAMIID:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Description: 'Latest AMI Image'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+Resources:
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: 'Enable SSH and HTTP Access via port 22 and port 80'
+      SecurityGroupIngress:
+        - Description: 'Allow SSH In'
+          IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: '0.0.0.0/0'
+        - Description: 'Allow HTTP In'
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: '0.0.0.0/0'
+  Bucket:
+    Type: 'AWS::S3::Bucket'
+  InstanceEC2:
+    Type: 'AWS::EC2::Instance'
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT2M
+    Properties:
+      InstanceType: 't3.micro'
+      ImageId: !Ref LatestAMIID
+      SecurityGroupIds: 
+        - !Ref InstanceSecurityGroup
+      Tags:
+        - Key: 'Name'
+          Value: 'EC2 User Data Test'
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          yum update -y
+          yum upgrade -y
+          #simulate other processes here
+          sleep 30
+          #Continue
+          yum install httpd -y
+          systemctl enable httpd
+          systemctl start httpd
+          echo "<html><body><h1><center>${Message}</center></h1></body></html>" > /var/www/html/index.html
+          /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource InstanceEC2 --region ${AWS::Region}

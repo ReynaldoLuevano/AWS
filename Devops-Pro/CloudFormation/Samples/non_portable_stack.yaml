@@ -1,0 +1,10 @@
+Resources:
+  Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'mytestbucket1234455566asd'
+  Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: 't3.small'
+      ImageId: 'ami-0ae0f14cea4998f46'

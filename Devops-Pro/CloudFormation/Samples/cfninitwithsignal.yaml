@@ -1,0 +1,65 @@
+Parameters:
+  Message:
+    Type: 'String'
+    Description: 'Message for the HTML page'
+    Default: 'Hola Mundo'
+  LatestAMIID:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Description: 'Latest AMI Image'
+    Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64'
+Resources:
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: 'Enable SSH and HTTP Access via port 22 and port 80'
+      SecurityGroupIngress:
+        - Description: 'Allow SSH In'
+          IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: '0.0.0.0/0'
+        - Description: 'Allow HTTP In'
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: '0.0.0.0/0'
+  Bucket:
+    Type: 'AWS::S3::Bucket'
+  InstanceEC2:
+    Type: 'AWS::EC2::Instance'
+    Metadata:
+      'AWS::CloudFormation::Init':
+        config:
+          packages:
+            yum:
+              httpd: []
+          files:
+            /var/www/html/index.html:
+              content: !Sub |
+                '<html><body><h1><center>${Message}</center></h1></body></html>'
+          commands:
+            simulatecommands:
+              command: 'sleep 60'
+          services:
+            sysvinit:
+              httpd:
+                enabled: 'true'
+                ensureRunning: 'true'
+                files:
+                  '/var/www/html/index.html'
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT15M
+    Properties:
+      InstanceType: 't3.micro'
+      ImageId: !Ref LatestAMIID
+      SecurityGroupIds: 
+        - !Ref InstanceSecurityGroup
+      Tags:
+        - Key: 'Name'
+          Value: 'EC2 User Data Test'
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource InstanceEC2 --region ${AWS::Region}
+          /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource InstanceEC2 --region ${AWS::Region}
