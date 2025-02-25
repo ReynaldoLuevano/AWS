@@ -10,7 +10,7 @@ RUN mkdir -p /var/www/html/images
 
 COPY images/*.jpg /var/www/html/images/
 
-ENTRYPOINT [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]
+#ENTRYPOINT [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]
 
 EXPOSE 80
 
