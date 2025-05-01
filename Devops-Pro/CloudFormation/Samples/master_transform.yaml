@@ -1,0 +1,5 @@
+Resources:
+  Fn::Transform:
+    Name: AWS::Include
+    Parameters:
+      Location: s3://jumpingbrains-bucket/resources/my_resources.yaml

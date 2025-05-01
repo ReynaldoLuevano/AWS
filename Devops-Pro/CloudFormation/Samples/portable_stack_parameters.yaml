@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  InstanceType:
+    Description: "Instance type to be launched."
+    Default: "t3.micro"
+    Type: String
+    AllowedValues: ["t3.micro", "c5.large", "m4.large"]
+    ConstraintDescription: Must specify the Instance Type
+  AMIId:
+    Type: 'String'
+    Description: "AMI for EC2"
+    Default: "ami-0ae0f14cea4998f46"
+Resources:
+  Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceType 
+      ImageId: !Ref AMIId 

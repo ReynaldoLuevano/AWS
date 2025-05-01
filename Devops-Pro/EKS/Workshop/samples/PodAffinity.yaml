@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ labels:
+  app: web
+ annotations:
+  description: "My super aplicacion web"
+  owner: "Reynaldo Luevano"
+  imageregistry: "https://hub.docker.com/"
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - redis
+        topologyKey: "kubernetes.io/hostname"
+  containers:
+  - name: web-app
+    image: nginx:1.12-alpine

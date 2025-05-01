@@ -1,0 +1,31 @@
+1  apiVersion: apps/v1
+2  kind: Deployment
+..............
+..............
+15      spec:
+16        containers:
+17          - name: proddetail
+18            image: "public.ecr.aws/u2g6w7p2/eks-workshop-demo/catalog_detail:1.0"
+19            imagePullPolicy: Always
+20            ports:
+21              - name: http
+22                containerPort: 3000
+23                protocol: TCP
+24            livenessProbe:
+25              httpGet:
+26                path: /ping
+27                port: 3000
+28              initialDelaySeconds: 5
+29              periodSeconds: 5
+30              timeoutSeconds: 1
+31              successThreshold: 1
+32              failureThreshold: 3
+33            readinessProbe:
+34              exec:
+35                command:
+36                  - /bin/bash
+37                  - -c
+38                  - cat readiness.txt | grep ready
+39              initialDelaySeconds: 15
+40              periodSeconds: 3
+41            resources: {}

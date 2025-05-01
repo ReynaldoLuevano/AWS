@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Deploy a VPC
+Resources:
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: Lab Internet Gateway
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !ImportValue MYVPC
+      InternetGatewayId: !Ref InternetGateway
+Outputs:
+  InternetGateway:
+    Description: My Internet Gateway
+    Value: !Ref InternetGateway
+    Export:
+      Name: MYIGW

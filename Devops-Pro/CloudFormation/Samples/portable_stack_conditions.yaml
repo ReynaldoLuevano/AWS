@@ -1,0 +1,26 @@
+Parameters:
+  EnvType:
+    Description: "Environment type."
+    Default: "DEV"
+    Type: String
+    AllowedValues: ["PROD", "DEV", "UAT"]
+    ConstraintDescription: "Especifica el entorno de la instancia"
+Conditions:
+  CreateProdResources: !Equals [!Ref EnvType, "PROD"]
+  CreateDevResources: !Equals [!Ref EnvType, "DEV"]
+  CreateUatResources: !Equals [!Ref EnvType, "UAT"]  
+  CreateExtra: !Or [Condition: CreateProdResources, Condition: CreateUatResources]
+Resources:
+  EC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: "ami-0ae0f14cea4998f46"
+      InstanceType: !If 
+       - CreateProdResources
+       - "c5.xlarge"
+       - !If [CreateUatResources, "c5.large", "t3.micro"]
+  MyBucket:
+    Condition: CreateExtra
+    Type: "AWS::S3::Bucket"
+
+    

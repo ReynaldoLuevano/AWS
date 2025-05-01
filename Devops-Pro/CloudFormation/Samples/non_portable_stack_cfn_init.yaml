@@ -1,0 +1,22 @@
+Resources:
+  InstanceJuanita:
+    Type: 'AWS::EC2::Instance'
+    Metadata:
+      AWS::CloudFormation::Init:
+        config:
+          packages:
+            yum:
+              httpd: []
+          services:
+            sysvinit:
+              httpd:
+                enabled: 'true'
+                ensureRunning: 'true'
+    Properties:
+      InstanceType: 't3.micro'
+      ImageId: 'ami-0ae0f14cea4998f46'
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource InstanceJuanita --region  ${AWS::Region}
+        
+

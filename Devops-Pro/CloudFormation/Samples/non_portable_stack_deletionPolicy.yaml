@@ -1,0 +1,12 @@
+Resources:
+  BucketPepito:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'jumpingbrains'
+  InstanceJuanita:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: 't3.micro'
+      ImageId: 'ami-0ae0f14cea4998f46'
+    DeletionPolicy: 'Retain'
+

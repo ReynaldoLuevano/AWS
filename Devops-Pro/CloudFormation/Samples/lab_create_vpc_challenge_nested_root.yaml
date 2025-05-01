@@ -1,0 +1,13 @@
+Resources:
+  Lab1:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 'https://cf-templates-1qxhgr9t4yyn6-us-west-2.s3.us-west-2.amazonaws.com/lab_create_vpc_challenge_nested_1.yaml'
+  Lab2:
+    DependsOn: Lab1
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 'https://cf-templates-1qxhgr9t4yyn6-us-west-2.s3.us-west-2.amazonaws.com/lab_create_vpc_challenge_nested_2.yaml'
+      Parameters:
+        VPCId: !GetAtt Lab1.Outputs.VPC
+        IGWId: !GetAtt Lab1.Outputs.InternetGateway

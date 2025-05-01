@@ -1,0 +1,8 @@
+Resources:
+  Autobots:
+    Type: 'AWS::S3::Bucket'
+  Animals:
+    Type: 'AWS::S3::Bucket'
+  ImportedBucket:
+    DeletionPolicy: Retain
+    Type: 'AWS::S3::Bucket'    

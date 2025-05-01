@@ -1,0 +1,31 @@
+description: Terminate an EC2 instance
+schemaVersion: '0.3'
+parameters:
+  InstanceId:
+    type: String
+    description: (Required) The Id of the instance
+  InstanceType:
+    type: String
+    description: (Required) The Value of the Tag Name of the EC2 Instance Cost center of the instance
+mainSteps:
+  - name: assertTags
+    action: aws:assertAwsResourceProperty
+    nextStep: terminateInstance
+    isCritical: false
+    isEnd: false
+    onFailure: Abort
+    inputs:
+      Service: ec2
+      Api: DescribeInstances
+      InstanceIds:
+        - '{{InstanceId}}'
+      PropertySelector: $.Reservations[0].Instances[0].InstanceType
+      DesiredValues:
+        - '{{InstanceType}}'
+  - name: terminateInstance
+    action: aws:changeInstanceState
+    isEnd: true
+    inputs:
+      InstanceIds:
+        - '{{InstanceId}}'
+      DesiredState: terminated

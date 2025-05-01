@@ -1,0 +1,12 @@
+Resources:
+  InstanceEC2:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: 't3.small'
+      ImageId: 'ami-0ae0f14cea4998f46'
+      UserData:
+        Fn::Base64: |-
+          #!/bin/bash -xe 
+          yum install httpd -y
+          service httpd start
+          systemctl enable httpd

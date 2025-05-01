@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: podwithfargate
+ namespace: dev
+ labels:
+  env: dev
+  checks: passed
+spec:
+  containers:
+  - name: web-app
+    image: nginx:1.12-alpine
