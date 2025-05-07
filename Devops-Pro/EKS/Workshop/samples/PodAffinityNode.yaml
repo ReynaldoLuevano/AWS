@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: podwithec2
+ namespace: dev
+ labels:
+  env: pro
+  checks: passed
+spec:
+  containers:
+  - name: web-app
+    image: nginx:1.12-alpine

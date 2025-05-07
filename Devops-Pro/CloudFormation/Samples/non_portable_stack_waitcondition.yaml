@@ -1,0 +1,24 @@
+Resources:
+  MyBD:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'jumpingbrains123'
+  MyWaitHandler:
+    Type: 'AWS::CloudFormation::WaitConditionHandle'
+  MyWaitCondition:
+    Type: 'AWS::CloudFormation::WaitCondition'
+    DependsOn: MyBD
+    Properties:
+      Handle: !Ref MyWaitHandler
+      Timeout: 120
+      Count: 1
+  AppServer1:
+    Type: 'AWS::EC2::Instance'
+    DependsOn: MyWaitCondition
+    Properties:
+      InstanceType: 't3.micro'
+      ImageId: 'ami-0ae0f14cea4998f46'
+      UserData:
+        Fn::Base64: !Sub |-
+          #!/bin/bash -xe 
+          curl -X PUT -H 'Content-Type:' --data-binary '{"Status": "SUCCESS", "Reason": "Config Complete","UniqueId": "123", "Data": "Completed."}' "${MyWaitHandler}"

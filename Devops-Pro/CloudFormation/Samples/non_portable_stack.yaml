@@ -1,9 +1,9 @@
 Resources:
-  Bucket:
+  BucketPepito:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: 'mytestbucket1234455566asd'
-  Instance:
+      BucketName: 'jumpingbrains909090'
+  InstanceJuanita:
     Type: 'AWS::EC2::Instance'
     Properties:
       InstanceType: 't3.small'

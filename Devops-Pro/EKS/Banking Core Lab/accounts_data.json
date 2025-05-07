@@ -1,0 +1,29 @@
+[   
+    {
+        "acc_id": 360110003,
+        "acc_type": "mortgage",
+        "balance": 199000,
+        "cust_id":  100050001,
+        "last_update":"2021-10-26",
+        "message":"Account in active status",
+        "status": "active"
+    },
+    {
+        "acc_id": 360110001,
+        "acc_type": "savings",
+        "balance": 219000,
+        "cust_id": 100050001,
+        "last_update": "2022-10-26",
+        "message": "Account in active status",
+        "status": "active"
+    },
+    {
+        "acc_id":360110002,
+        "acc_type": "checking",
+        "balance": 200000,
+        "cust_id": 100050001,
+        "last_update": "2021-10-26",
+        "message": "Account in active status",
+        "status":"active"
+    }
+]

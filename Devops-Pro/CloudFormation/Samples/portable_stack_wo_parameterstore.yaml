@@ -1,0 +1,21 @@
+Parameters:
+  ProjectCode:
+    Type: "String"
+    Description: "Company Project"
+    Default: "Manhattan"
+  LatestAMIID:
+    Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Description: "Latest AMI Image"
+    Default: "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
+Resources:
+  Bucket:
+    Type: "AWS::S3::Bucket"
+  Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      InstanceType: "t3.micro"
+      ImageId: !Ref LatestAMIID
+      Tags:
+        - Key: "company:project"
+          Value: !Ref ProjectCode
+    DeletionPolicy: 'Retain'

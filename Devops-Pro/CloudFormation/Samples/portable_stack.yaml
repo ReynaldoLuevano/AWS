@@ -1,16 +1,20 @@
 Parameters:
-  AMIID:
-    Type: 'String'
-    Description: "AMI for EC2"
+  Project:
+    Type: "AWS::SSM::Parameter::Value<String>"
+    Description: "Company Project"
+    Default: "/company/projects/project"
   LatestAMIID:
-    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
-    Description: 'Latest AMI Image'
-    Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64'
+    Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Description: "Latest AMI Image"
+    Default: "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
 Resources:
   Bucket:
-    Type: 'AWS::S3::Bucket'
+    Type: "AWS::S3::Bucket"
   Instance:
-    Type: 'AWS::EC2::Instance'
+    Type: "AWS::EC2::Instance"
     Properties:
-      InstanceType: 't3.small'
+      InstanceType: "t3.micro"
       ImageId: !Ref LatestAMIID
+      Tags:
+        - Key: "company:project"
+          Value: !Ref Project

@@ -1,5 +1,5 @@
 Resources:
-  Decepticons:
+  Amazonians:
     Type: 'AWS::S3::Bucket'
-  Autobots:
+  Azurians:
     Type: 'AWS::S3::Bucket'

@@ -1,0 +1,16 @@
+--- 
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: banking-app-cluster
+  version: "1.31"
+  region: us-east-1
+
+nodeGroups:
+  - name: ng-default
+    instanceType: t3.medium
+    desiredCapacity: 2
+    iam:
+      instanceProfileARN: "arn:aws:iam::729848911361:instance-profile/cluster_node_instance_profile"
+      instanceRoleARN: "arn:aws:iam::729848911361:role/cluster_node_role"

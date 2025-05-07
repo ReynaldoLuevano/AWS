@@ -1,0 +1,12 @@
+type: c5.large
+  vcpu: 2
+  memory: 4gb
+type: m5.large
+  vcpu: 2
+  memory: 8gb
+type: r5.large
+  vcpu: 2
+  memory: 16gb
+type: m5.xlarge
+  vcpu: 4
+  memory: 16gb

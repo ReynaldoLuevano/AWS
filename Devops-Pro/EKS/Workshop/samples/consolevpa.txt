@@ -1,0 +1,27 @@
+kubectl get vpa
+
+NAME    MODE    CPU     MEM         PROVIDED    AGE
+my-vpa  Off     425m    264155K     True        6m10s
+
+kubectl describe vpa
+
+    Recommendation:
+        Container Recommendations:
+            Container Name: WebApp
+            Lower Bound:
+                Cpu:    180m
+                Memory:  264155K
+            Target:
+                Cpu:    180m
+                Memory:  264155K
+            Uncapped Target:
+                Cpu:    180m
+                Memory:  264155K
+            Upper Bound:
+                Cpu:    112400m
+                Memory:  4001861445
+        
+
+
+
+

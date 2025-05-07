@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Stack for the Project'
+Parameters:
+  ProjectCode:
+    Type: "String"
+    Description: "Company Project"
+    Default: "Genesis"
+Resources:
+  Juanita:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      InstanceType: "t3.micro"
+      ImageId: ami-0ae0f14cea4998f46
+      Tags:
+        - Key: "Name"
+          Value: !Ref ProjectCode
+Outputs:
+  EndpointJuanita:
+    Description: Public IP of the EC2 Instance
+    Value: !GetAtt Juanita.PublicIp

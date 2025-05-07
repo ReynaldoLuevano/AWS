@@ -1,0 +1,5 @@
+Resources:
+  Decepticons:
+    Type: 'AWS::S3::Bucket'
+  Autobots:
+    Type: 'AWS::S3::Bucket'

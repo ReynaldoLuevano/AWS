@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >
+  This template creates an Amazon EC2 instance. It installs and configures
+  the Nginx web server via user data.
+Parameters:
+  AmazonLinuxAMIID:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64
+Resources:
+  WebServer:
+    Type: AWS::EC2::Instance
+    Metadata:
+      AWS::CloudFormation::Init:
+        configSets:
+          start:
+            - 'configStart'
+          update:
+            - 'configUpdate'
+        configUpdate:
+          files:
+            /var/www/html/index.html:
+              content: '<!DOCTYPE html><body><h1>Hola desde cfn-hup</h1></body></html>'
+        configStart:
+          files:
+            /var/www/html/index.html:
+              content: '<!DOCTYPE html><body><h1>Hola desde cfn-init</h1></body></html>'
+            /etc/cfn/cfn-hup.conf:
+              content: !Sub |
+                [main]
+                stack=${AWS::StackName}
+                region=${AWS::Region}
+                interval=1
+                verbose=true
+              mode: '000400'
+              owner: 'root'
+              group: 'root'
+            /etc/cfn/hooks.conf:
+              content: !Sub |
+                [my-update-hook]
+                triggers=post.update
+                path=Resources.WebServer
+                action=/opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource WebServer --region ${AWS::Region} -c update
+                runas=root
+          packages:
+            yum:
+              httpd: []
+          services:
+            sysvinit:
+              cfn-hup:
+                enabled: 'true'
+                ensureRunning: 'true'
+                files:
+                  - '/etc/cfn/cfn-hup.conf'
+                  - '/etc/cfn/hooks.conf'
+              httpd:
+                enabled: 'true'
+                ensureRunning: 'true'
+    Properties:
+      ImageId: !Ref AmazonLinuxAMIID
+      InstanceType: t3.micro
+      SecurityGroupIds:
+        - sg-0632ef62637c361ff
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource WebServer --region ${AWS::Region} -c start
+      Tags:
+        - Key: 'Name'
+          Value: Webserver2
+Outputs:
+  Website:
+    Description: URL to site
+    Value: !Sub 'http://${WebServer.PublicIp}'

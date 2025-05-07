@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >
+  This template creates an Amazon EC2 instance. It installs and configures
+  the Nginx web server via user data.
+
+Parameters:
+  AmazonLinuxAMIID:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64
+
+Resources:
+  WebServer:
+    Type: AWS::EC2::Instance
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT2M
+    Properties:
+      ImageId: !Ref AmazonLinuxAMIID
+      InstanceType: t3.micro
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum install -y nginx
+          systemctl enable nginx
+          systemctl start nginx
+          /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource WebServer --region ${AWS::Region}
+Outputs:
+  Website:
+    Description: URL to site
+    Value: !Sub 'http://${WebServer.PublicIp}'

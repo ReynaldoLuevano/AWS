@@ -1,0 +1,50 @@
+description: Terminate an EC2 instance
+schemaVersion: '0.3'
+parameters:
+  InstanceId:
+    type: String
+    description: (Required) The Id of the instance
+  InstanceType:
+    type: String
+    description: (Required) The Value of the Tag Name of the EC2 Instance Cost center of the instance
+assumeRole: arn:aws:iam::651706782613:role/SSMAutomationRole
+mainSteps:
+  - name: assertInstanceType
+    action: aws:assertAwsResourceProperty
+    isCritical: false
+    isEnd: true
+    onFailure: step:ChangeInstanceState
+    inputs:
+      Service: ec2
+      Api: DescribeInstances
+      InstanceIds:
+        - '{{InstanceId}}'
+      PropertySelector: $.Reservations[0].Instances[0].InstanceType
+      DesiredValues:
+        - '{{InstanceType}}'
+  - name: ChangeInstanceState
+    action: aws:changeInstanceState
+    nextStep: ModifyInstanceAttribute
+    isEnd: false
+    inputs:
+      InstanceIds:
+        - '{{ InstanceId }}'
+      DesiredState: stopped
+  - name: ModifyInstanceAttribute
+    action: aws:executeAwsApi
+    nextStep: StartInstances
+    isEnd: false
+    inputs:
+      Service: ec2
+      Api: ModifyInstanceAttribute
+      InstanceId: '{{ InstanceId }}'
+      InstanceType:
+        Value: '{{ InstanceType }}'
+  - name: StartInstances
+    action: aws:executeAwsApi
+    isEnd: true
+    inputs:
+      Service: ec2
+      Api: StartInstances
+      InstanceIds:
+        - '{{ InstanceId }}'

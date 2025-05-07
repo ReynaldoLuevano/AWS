@@ -1,0 +1,21 @@
+Resources:
+  MyVpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+  MySubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Select
+        - 0
+        - !Cidr
+          - !GetAtt MyVpc.CidrBlock
+          - 1
+          - 8
+      VpcId: !Ref MyVpc
+Outputs:
+  MySubnetId:
+    Value: !Ref MySubnet 
+    Export:
+      Name: SHAREDSUBNET
+      
