@@ -15,4 +15,6 @@ Resources:
       VpcId: !Ref MyVpc
 Outputs:
   MySubnetId:
-    Value: !Ref MySubnet      
+    Value: !Ref MySubnet
+    Export: 
+      Name: SUBNETEXPORTJUANITA    

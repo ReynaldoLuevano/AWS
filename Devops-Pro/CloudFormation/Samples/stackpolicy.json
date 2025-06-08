@@ -2,9 +2,9 @@
     "Statement" : [
       {
         "Effect" : "Deny",
-        "Action" : "Update:Delete",
+        "Action" : "Update:*",
         "Principal": "*",
-        "Resource" : "LogicalResourceId/Autobots"
+        "Resource" : "LogicalResourceId/InstanceJuanita"
       }
     ]
 }

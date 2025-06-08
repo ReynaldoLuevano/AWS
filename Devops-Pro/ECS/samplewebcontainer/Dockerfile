@@ -1,7 +1,5 @@
 FROM redhat/ubi8
 
-LABEL maintainer="Jumping Brains"
-
 RUN yum install httpd -y
 
 COPY index.html /var/www/html

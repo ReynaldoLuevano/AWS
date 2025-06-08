@@ -2,9 +2,12 @@ Resources:
   BucketPepito:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: 'jumpingbrains909090'
+      BucketName: 'jumpingbrains90asdasd123123'
   InstanceJuanita:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: 't3.small'
-      ImageId: 'ami-0ae0f14cea4998f46'
+      InstanceType: 't3.micro'
+      ImageId: 'ami-078578e1dc91d98f2'
+Outputs:
+  InstanceJuanita:
+    Value: !GetAtt InstanceJuanita.PublicIp

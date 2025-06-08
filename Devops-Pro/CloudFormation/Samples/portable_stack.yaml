@@ -8,8 +8,6 @@ Parameters:
     Description: "Latest AMI Image"
     Default: "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
 Resources:
-  Bucket:
-    Type: "AWS::S3::Bucket"
   Instance:
     Type: "AWS::EC2::Instance"
     Properties:

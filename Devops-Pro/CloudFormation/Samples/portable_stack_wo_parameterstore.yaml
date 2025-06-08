@@ -18,4 +18,3 @@ Resources:
       Tags:
         - Key: "company:project"
           Value: !Ref ProjectCode
-    DeletionPolicy: 'Retain'

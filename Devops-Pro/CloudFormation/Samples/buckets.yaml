@@ -1,5 +1,3 @@
 Resources:
   Amazonians:
     Type: 'AWS::S3::Bucket'
-  Azurians:
-    Type: 'AWS::S3::Bucket'

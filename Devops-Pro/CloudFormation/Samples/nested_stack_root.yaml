@@ -2,13 +2,11 @@ Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://reynaldoluevanotest1.s3.eu-south-2.amazonaws.com/nested_stack_vpc.yaml
+      TemplateURL: https://reynaldoluevanostacks.s3.eu-south-2.amazonaws.com/nested_stack_vpc.yaml
   WebserverStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://reynaldoluevanotest1.s3.eu-south-2.amazonaws.com/nested_stack_web.yaml
+      TemplateURL: https://reynaldoluevanostacks.s3.eu-south-2.amazonaws.com/nested_stack_web.yaml
       Parameters:
         SubnetIdForJuanita: !GetAtt VPCStack.Outputs.MySubnetId
-Outputs:
-  VPCStackAtt:
-    Value: !GetAtt VPCStack.Outputs.MySubnetId     
+  
