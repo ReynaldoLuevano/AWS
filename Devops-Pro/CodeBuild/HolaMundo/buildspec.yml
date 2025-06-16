@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - javac src/sample/Hello.java
+      - java -cp src sample.Hello
+      - cd src
+      - jar cf Hello.jar sample/Hello.class 
+
+artifacts:
+  files:
+    - src/Hello.jar

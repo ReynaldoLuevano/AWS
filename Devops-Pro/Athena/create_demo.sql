@@ -7,8 +7,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS `default`.`demo` (
   `card_expire` string,
   `card_type` string,
   `card_sec_code` int,
-  `transaction_amount` decimal(7,2),
-  `user_agent` string
+  `transaction_amount` decimal(7,2)
 ) 
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
 WITH SERDEPROPERTIES (

@@ -1,0 +1,4 @@
+record_number,first_name,last_name,transaction_date,card_number,card_expire,card_type,card_sec_code,transaction_amount
+910,Reynaldo,Leonard,2025-05-21,349069153748202,05/27,JCB 15 digit,35,9965.12
+2500,Juana,Martinez,2025-02-21,349069153758202,05/27,JCB 15 digit,35,9965.12
+4614,Joel,Gonzalez,2025-04-06,180011445928176,11/30,VISA 16 digit,34,5955.01

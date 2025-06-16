@@ -1,0 +1,18 @@
+h1 {
+  font-size: 500%;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 200%;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
