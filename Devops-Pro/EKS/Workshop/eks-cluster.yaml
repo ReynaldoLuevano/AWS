@@ -5,7 +5,7 @@ availabilityZones:
   - eu-west-1b
   - eu-west-1c
 metadata:
-  name: myEKScluster
+  name: EKScluster
   region: eu-west-1
   version: "1.32"
   tags:

@@ -1,0 +1,18 @@
+#create text
+    Create a movie description that talks about a scientific that brings back dinousaurs to life and then everything goes wrong
+    
+    Crea una descripción de película que hable sobre un científico que devuelve la vida a los dinosaurios y luego todo sale mal.
+    
+
+#create image
+    Create a movie poster about a movie that 
+
+    Create a el poster de una pelicula que 
+
+
+#guardrails
+    Create movie descriptions, sinopsis, summarize movies 
+
+    Crear descripciones de películas, sinopsis, resumir películas
+    
+    Create a movie title that talks about a scientific that brings back dinousaurs to life and then everything goes wrong

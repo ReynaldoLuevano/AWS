@@ -9,7 +9,7 @@ spec:
         nodeSelectorTerms:
         - matchExpressions:
           - key: processor
-            operator: NotIn
+            operator: In
             values:
             - gpu            
   containers:

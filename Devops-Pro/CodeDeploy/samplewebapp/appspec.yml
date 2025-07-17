@@ -4,12 +4,12 @@ files:
   - source: app/
     destination: /var/www/html/
 hooks:
-  AfterInstall:
-    - location: scripts/install_dependencies
-      timeout: 300
-      runas: root
   ApplicationStop:
     - location: scripts/stop_server
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/install_dependencies
       timeout: 300
       runas: root
   ApplicationStart:

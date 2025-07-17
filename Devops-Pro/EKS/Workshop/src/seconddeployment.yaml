@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ecr-example
+  template:
+    metadata:
+      labels:
+        app: ecr-example
+    spec:
+      containers:
+      - name: web-app-container
+        image: public.ecr.aws/y3e3h9w7/micontainer122:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+

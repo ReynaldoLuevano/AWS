@@ -7,8 +7,8 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from botocore.signers import CloudFrontSigner
 
 
-key_id = 'KW1EEAQR9Q5PB'
-url = 'https://d1babeuz3o5ez4.cloudfront.net/dino1.jpg'
+key_id = 'K11O1HD0SHE2V'
+url = 'https://dk3owgwtjoaor.cloudfront.net/dino1.jpg'
 expire_date = datetime.datetime(2025, 12, 1)
 
 
