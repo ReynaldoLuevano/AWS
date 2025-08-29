@@ -4,7 +4,7 @@ Parameters:
     Description: "Instance type to be launched."
     Default: "t3.micro"
     Type: String
-    AllowedValues: ["t3.micro", "c5.large", "m4.large"]
+    AllowedValues: ["t3.micro", "c5.large", "m4.large", "t3.small"]
     ConstraintDescription: Must specify the Instance Type
   AMIId:
     Type: 'String'
@@ -13,6 +13,9 @@ Parameters:
 Resources:
   Instance:
     Type: 'AWS::EC2::Instance'
+    DeletionPolicy: "Retain"
     Properties:
       InstanceType: !Ref InstanceType 
-      ImageId: !Ref AMIId 
+      ImageId: !Ref AMIId
+
+

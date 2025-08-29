@@ -1,1 +1,1 @@
-GET /my-movie-index/_search?q=james%20bond
+GET /peliculas-index/_search?q=james%20bond

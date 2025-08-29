@@ -1,0 +1,12 @@
+Parameters:
+  RobotAppSecurityGroup:
+    Type: String
+    Description: Security group for the robot Instance
+Resources:
+  RobotAppServer:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-087c17d1fe0178315
+      SecurityGroups:
+      - !Ref RobotAppSecurityGroup

@@ -1,4 +1,4 @@
-PUT /my-movie-index
+PUT /peliculas-index
 {
     "settings": {
       "index": {

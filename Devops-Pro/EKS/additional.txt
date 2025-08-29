@@ -47,5 +47,5 @@ cluster_name=<my-cluster>
 oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
 echo $oidc_id
 
- # check serviceAccounts and Roeles
+ # check serviceAccounts and Roles
  

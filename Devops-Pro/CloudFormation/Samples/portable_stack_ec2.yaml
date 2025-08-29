@@ -1,4 +1,11 @@
 Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.small
+      ImageId: ami-0ae0f14cea4998f46
+      SecurityGroups:
+        - !Ref MySecurityGroup
   MySecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -8,11 +15,3 @@ Resources:
           fromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
-  MyInstance:
-    Type: AWS::EC2::Instance
-    Properties:
-      InstanceType: t3.small
-      ImageId: ami-0ae0f14cea4998f46
-      SecurityGroups:
-        - !Ref MySecurityGroup
-

@@ -1,3 +1,4 @@
 Resources:
   Amazonians:
+    DeletionPolicy: 'Retain'
     Type: 'AWS::S3::Bucket'

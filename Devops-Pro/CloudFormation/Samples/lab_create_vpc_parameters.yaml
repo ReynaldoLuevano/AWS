@@ -1,10 +1,14 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Deploy a VPC
 Parameters:
-  NameVPC:
+  VpcName:
     Type: String
-    Default: 'MyFistVPC'
-    Description: Enter the name of the VPC
+    Default: MyVPC
+    Description: The name of the VPC
+  CidrBlockSubnet1:
+    Type: String
+    Default: 10.0.8.0/24
+    Description: The CIDR block for the first subnet
 Resources:
   VPC:
     Type: AWS::EC2::VPC
@@ -13,7 +17,7 @@ Resources:
       EnableDnsHostnames: true
       Tags:
       - Key: Name
-        Value: !Ref NameVPC
+        Value: !Ref VpcName
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
@@ -32,7 +36,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
-      CidrBlock: 10.0.0.0/24
+      CidrBlock: !Ref CidrBlockSubnet1
       AvailabilityZone: !Select 
         - '0'
         - !GetAZs ''
@@ -51,6 +55,30 @@ Resources:
       Tags:
         - Key: Name
           Value: Private Subnet 1
+
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.2.0/24
+      AvailabilityZone: !Select 
+        - '1'
+        - !GetAZs ''
+      Tags:
+        - Key: Name
+          Value: Public Subnet 2
+
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.3.0/24
+      AvailabilityZone: !Select 
+        - '1'
+        - !GetAZs ''
+      Tags:
+        - Key: Name
+          Value: Private Subnet 2
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -73,6 +101,12 @@ Resources:
       SubnetId: !Ref PublicSubnet1
       RouteTableId: !Ref PublicRouteTable
 
+  PublicSubnetRouteTableAssociation2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet2
+      RouteTableId: !Ref PublicRouteTable
+
   PrivateRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -87,12 +121,25 @@ Resources:
       SubnetId: !Ref PrivateSubnet1
       RouteTableId: !Ref PrivateRouteTable
 
+  PrivateSubnetRouteTableAssociation2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnet2
+      RouteTableId: !Ref PrivateRouteTable
+
 Outputs:
   VPC:
     Description: VPC
     Value: !Ref VPC
+
   AZ1:
     Description: Availability Zone 1
-    Value: !GetAtt 
+    Value: !GetAtt
       - PublicSubnet1
+      - AvailabilityZone
+
+  AZ2:
+    Description: Availability Zone 2
+    Value: !GetAtt
+      - PublicSubnet2
       - AvailabilityZone

@@ -1,0 +1,11 @@
+Resources:
+  Robo1:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 'https://cf-templates-1jz0tdxxvv4qa-us-east-1.s3.us-east-1.amazonaws.com/lab_automation_nested_1.yaml'
+  Robo2:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 'https://cf-templates-1jz0tdxxvv4qa-us-east-1.s3.us-east-1.amazonaws.com/lab_automation_nested_2.yaml'
+      Parameters:
+        RobotAppSecurityGroup: !GetAtt Robo1.Outputs.RobotSecGroup

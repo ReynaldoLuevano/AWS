@@ -1,4 +1,4 @@
-CREATE EXTERNAL TABLE IF NOT EXISTS `default`.`demo` (
+CREATE EXTERNAL TABLE IF NOT EXISTS `default`.`demo153` (
   `record_number` int,
   `first_name` string,
   `last_name` string,
@@ -13,5 +13,5 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
 WITH SERDEPROPERTIES (
   'serialization.format' = ',',
   'field.delim' = ','
-) LOCATION 's3://arquitecto122experis/ingesta122/'
+) LOCATION 's3://arqutiectosexperis/'
 TBLPROPERTIES ("skip.header.line.count"="1");

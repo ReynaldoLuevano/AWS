@@ -4,7 +4,7 @@ echo "Encriptando chisme -----"
 
 
 aws kms encrypt \
-    --key-id alias/Key200 \
+    --key-id alias/KeyOps203 \
     --plaintext fileb://misecreto.txt \
     --output text \
     --query CiphertextBlob | base64 \

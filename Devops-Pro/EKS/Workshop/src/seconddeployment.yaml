@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: web-app-container
-        image: public.ecr.aws/y3e3h9w7/micontainer122:latest
+        image: 651706782613.dkr.ecr.eu-south-2.amazonaws.com/miwebapp:latest
         ports:
         - containerPort: 80
           protocol: TCP

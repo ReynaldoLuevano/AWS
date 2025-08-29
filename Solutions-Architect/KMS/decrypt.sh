@@ -4,7 +4,7 @@ echo "Desencriptando chisme -----"
 
 
 aws kms decrypt --ciphertext-blob fileb://encoded_secreto.txt \
---key-id alias/Key200 \
+--key-id alias/KeyOps203 \
 --output text \
 --query Plaintext | base64 --decode > chisme_descifrado.txt
 

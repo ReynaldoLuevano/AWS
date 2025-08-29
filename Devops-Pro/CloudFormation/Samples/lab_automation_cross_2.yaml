@@ -1,0 +1,12 @@
+Resources:
+  RobotAppServer:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-087c17d1fe0178315
+      SecurityGroups:
+      - !ImportValue SHAREDSECURITYGROUP
+Outputs:
+  RobotAppServerPublicIP:
+    Description: 'Public DNS of RobotAppServer EC2 instance'
+    Value: !GetAtt RobotAppServer.PublicIp

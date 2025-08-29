@@ -1,0 +1,8 @@
+{
+    "ImageId": "ami-01f446d4eeaed8a3c",
+    "InstanceType": "t3.micro",
+    "SecurityGroupIds": ["sg-0b07139e27e90a6d1"],
+    "UserData": "IyEvYmluL3NoCnl1bSAteSBpbnN0YWxsIGh0dHBkIHBocCBteXNxbCBwaHAtbXlzcWwKY2hrY29uZmlnIGh0dHBkIG9uCi9ldGMvaW5pdC5kL2h0dHBkIHN0YXJ0CmNkIC90bXAKd2dldCBodHRwczovL2F3cy10Yy1sYXJnZW9iamVjdHMuczMudX$"
+}
+
+
