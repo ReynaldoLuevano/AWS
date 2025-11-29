@@ -2,11 +2,9 @@ FROM redhat/ubi8
 
 RUN yum install httpd -y
 
-COPY index.html /var/www/html
+COPY src/ /var/www/html/
 
-RUN mkdir -p /var/www/html/images
-
-COPY images/*.jpg /var/www/html/images/
+RUN ls -la /var/www/html/assets/img
 
 ENTRYPOINT [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]
 
