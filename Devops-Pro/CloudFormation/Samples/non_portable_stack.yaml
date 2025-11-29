@@ -1,9 +1,10 @@
 Resources:
   InstanceJuanita:
-    DependsOn: Amazonians
     Type: 'AWS::EC2::Instance'
     Properties:
       InstanceType: 't3.micro'
-      ImageId: 'ami-078578e1dc91d9xf2'
+      ImageId: 'ami-04fbf0e453f1d3802'
   Amazonians:
     Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'reynaldoluevano123456789sepe'

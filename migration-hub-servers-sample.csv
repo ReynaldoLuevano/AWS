@@ -1,0 +1,16 @@
+ExternalId,Hostname,IPAddress,OSName,OSVersion,CPUArchitecture,TotalRAM,TotalStorage,Description
+server-001,web-server-01,192.168.1.10,Windows Server,2019,x64,16384,500,Production web server
+server-002,db-server-01,192.168.1.20,Linux,Ubuntu 20.04,x64,32768,1000,Primary database server
+server-003,app-server-01,192.168.1.30,Windows Server,2016,x64,8192,250,Application server
+server-004,file-server-01,192.168.1.40,Linux,CentOS 7,x64,4096,2000,File storage server
+server-005,mail-server-01,192.168.1.50,Windows Server,2019,x64,12288,300,Email server
+server-006,web-server-02,192.168.1.60,Linux,Ubuntu 18.04,x64,8192,300,Secondary web server
+server-007,cache-server-01,192.168.1.70,Linux,Redis 6,x64,16384,100,Redis cache server
+server-008,proxy-server-01,192.168.1.80,Linux,CentOS 8,x64,4096,150,Load balancer
+server-009,backup-server-01,192.168.1.90,Windows Server,2016,x64,8192,5000,Backup storage server
+server-010,test-server-01,192.168.1.100,Windows Server,2019,x64,4096,200,Testing environment
+server-011,monitor-server-01,192.168.1.110,Linux,Ubuntu 20.04,x64,8192,500,Monitoring server
+server-012,api-server-01,192.168.1.120,Linux,CentOS 7,x64,16384,300,API gateway server
+server-013,db-server-02,192.168.1.130,Windows Server,2019,x64,32768,2000,Secondary database server
+server-014,log-server-01,192.168.1.140,Linux,Ubuntu 18.04,x64,12288,1000,Log aggregation server
+server-015,dev-server-01,192.168.1.150,Windows Server,2016,x64,8192,400,Development server

@@ -1,0 +1,110 @@
+{
+  "ImportFormatVersion": 1,
+  "Resources": [
+    {
+      "ResourceType": "SERVER",
+      "ResourceName": "web-server-01",
+      "ResourceId": "vm-001",
+      "IpAddress": "192.168.1.10",
+      "MacAddresses": ["00:50:56:12:34:56"],
+      "OSDistribution": "Windows Server 2019 Standard",
+      "OSType": "Windows",
+      "HostName": "web-server-01",
+      "OSVersion": "10.0.17763",
+      "CPUArchitecture": "x64"
+    },
+    {
+      "ResourceType": "SERVER",
+      "ResourceName": "db-server-01",
+      "ResourceId": "vm-002",
+      "IpAddress": "192.168.1.20",
+      "MacAddresses": ["00:50:56:23:45:67"],
+      "OSDistribution": "Ubuntu 20.04.3 LTS",
+      "OSType": "Linux",
+      "HostName": "db-server-01",
+      "OSVersion": "5.4.0-74-generic",
+      "CPUArchitecture": "x64"
+    },
+    {
+      "ResourceType": "SERVER",
+      "ResourceName": "app-server-01",
+      "ResourceId": "vm-003",
+      "IpAddress": "192.168.1.30",
+      "MacAddresses": ["00:50:56:34:56:78"],
+      "OSDistribution": "Windows Server 2016 Standard",
+      "OSType": "Windows",
+      "HostName": "app-server-01",
+      "OSVersion": "10.0.14393",
+      "CPUArchitecture": "x64"
+    },
+    {
+      "ResourceType": "SERVER",
+      "ResourceName": "file-server-01",
+      "ResourceId": "vm-004",
+      "IpAddress": "192.168.1.40",
+      "MacAddresses": ["00:50:56:45:67:89"],
+      "OSDistribution": "CentOS Linux 7",
+      "OSType": "Linux",
+      "HostName": "file-server-01",
+      "OSVersion": "3.10.0-1160",
+      "CPUArchitecture": "x64"
+    },
+    {
+      "ResourceType": "SERVER",
+      "ResourceName": "mail-server-01",
+      "ResourceId": "vm-005",
+      "IpAddress": "192.168.1.50",
+      "MacAddresses": ["00:50:56:56:78:9A"],
+      "OSDistribution": "Windows Server 2019 Standard",
+      "OSType": "Windows",
+      "HostName": "mail-server-01",
+      "OSVersion": "10.0.17763",
+      "CPUArchitecture": "x64"
+    },
+    {
+      "ResourceType": "PROCESS",
+      "ResourceName": "IIS Web Server",
+      "ResourceId": "proc-001",
+      "ApplicationType": "Web Server",
+      "DotNetFrameworkVersion": "4.8",
+      "ApplicationVersion": "10.0",
+      "DotNetCoreVersion": "",
+      "JdkVersion": "",
+      "ProgrammingLanguage": "C#",
+      "DatabaseType": "",
+      "DatabaseVersion": "",
+      "DatabaseEdition": "",
+      "AssociatedServerIds": ["vm-001", "vm-003"]
+    },
+    {
+      "ResourceType": "PROCESS",
+      "ResourceName": "MySQL Database",
+      "ResourceId": "proc-002",
+      "ApplicationType": "Database",
+      "DotNetFrameworkVersion": "",
+      "ApplicationVersion": "",
+      "DotNetCoreVersion": "",
+      "JdkVersion": "",
+      "ProgrammingLanguage": "",
+      "DatabaseType": "MySQL",
+      "DatabaseVersion": "8.0",
+      "DatabaseEdition": "Community",
+      "AssociatedServerIds": ["vm-002"]
+    },
+    {
+      "ResourceType": "PROCESS",
+      "ResourceName": "Apache Web Server",
+      "ResourceId": "proc-003",
+      "ApplicationType": "Web Server",
+      "DotNetFrameworkVersion": "",
+      "ApplicationVersion": "2.4",
+      "DotNetCoreVersion": "",
+      "JdkVersion": "",
+      "ProgrammingLanguage": "PHP",
+      "DatabaseType": "",
+      "DatabaseVersion": "",
+      "DatabaseEdition": "",
+      "AssociatedServerIds": ["vm-004"]
+    }
+  ]
+}
